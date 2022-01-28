@@ -199,6 +199,7 @@ QVariant TransferListModel::headerData(int section, Qt::Orientation orientation,
             case TR_LAST_ACTIVITY: return tr("Last Activity", "Time passed since a chunk was downloaded/uploaded");
             case TR_TOTAL_SIZE: return tr("Total Size", "i.e. Size including unwanted data");
             case TR_AVAILABILITY: return tr("Availability", "The number of distributed copies of the torrent");
+            case TR_SEEDS_PEERS_RATIO: return tr("Seeds/Peers Ratio", "Ratio of full and partial sources");
             default: return {};
             }
         }
@@ -226,6 +227,7 @@ QVariant TransferListModel::headerData(int section, Qt::Orientation orientation,
             case TR_QUEUE_POSITION:
             case TR_LAST_ACTIVITY:
             case TR_AVAILABILITY:
+            case TR_SEEDS_PEERS_RATIO:
                 return QVariant(Qt::AlignRight | Qt::AlignVCenter);
             default:
                 return QAbstractListModel::headerData(section, orientation, role);
@@ -403,6 +405,8 @@ QString TransferListModel::displayValue(const BitTorrent::Torrent *torrent, cons
         return availabilityString(torrent->distributedCopies());
     case TR_TOTAL_SIZE:
         return unitString(torrent->totalSize());
+    case TR_SEEDS_PEERS_RATIO:
+        return ratioString(torrent->seedsLeechsRatio());
     }
 
     return {};
@@ -426,6 +430,8 @@ QVariant TransferListModel::internalValue(const BitTorrent::Torrent *torrent, co
         return !alt ? torrent->seedsCount() : torrent->totalSeedsCount();
     case TR_PEERS:
         return !alt ? torrent->leechsCount() : torrent->totalLeechersCount();
+    case TR_SEEDS_PEERS_RATIO:
+        return torrent->seedsLeechsRatio();
     case TR_DLSPEED:
         return torrent->downloadPayloadRate();
     case TR_UPSPEED:
@@ -526,6 +532,7 @@ QVariant TransferListModel::data(const QModelIndex &index, const int role) const
         case TR_ETA:
         case TR_SEEDS:
         case TR_PEERS:
+        case TR_SEEDS_PEERS_RATIO:
         case TR_UPSPEED:
         case TR_DLSPEED:
         case TR_UPLIMIT:

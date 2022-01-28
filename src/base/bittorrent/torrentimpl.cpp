@@ -1152,6 +1152,11 @@ int TorrentImpl::totalLeechersCount() const
     return (m_nativeStatus.num_incomplete > 0) ? m_nativeStatus.num_incomplete : (m_nativeStatus.list_peers - m_nativeStatus.list_seeds);
 }
 
+qreal TorrentImpl::seedsLeechsRatio() const
+{
+    return this->totalSeedsCount() / static_cast<qreal>(this->totalLeechersCount());
+}
+
 int TorrentImpl::completeCount() const
 {
     // additional info: https://github.com/qbittorrent/qBittorrent/pull/5300#issuecomment-267783646

@@ -80,6 +80,7 @@ public:
         TR_SEEN_COMPLETE_DATE,
         TR_LAST_ACTIVITY,
         TR_AVAILABILITY,
+        TR_SEEDS_PEERS_RATIO,
 
         NB_COLUMNS
     };

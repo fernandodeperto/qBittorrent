@@ -917,6 +917,7 @@ window.qBittorrent.DynamicTable = (function() {
             this.newColumn('seen_complete', '', 'QBT_TR(Last Seen Complete)QBT_TR[CONTEXT=TransferListModel]', 100, false);
             this.newColumn('last_activity', '', 'QBT_TR(Last Activity)QBT_TR[CONTEXT=TransferListModel]', 100, false);
             this.newColumn('availability', '', 'QBT_TR(Availability)QBT_TR[CONTEXT=TransferListModel]', 100, false);
+            this.newColumn('seeds_peers_ratio', '', 'QBT_TR(Seeds/Peers Ratio)QBT_TR[CONTEXT=TransferListModel]', 100, false);
 
             this.columns['state_icon'].onclick = '';
             this.columns['state_icon'].dataProperties[0] = 'state';
@@ -1273,6 +1274,15 @@ window.qBittorrent.DynamicTable = (function() {
                 td.set('text', value);
                 td.set('title', value);
             };
+
+            // seeds/peers ratio
+            this.columns['seeds_peers_ratio'].updateTd = this.columns['ratio'].updateTd;
+            // this.columns['seeds_peers_ratio'].updateTd = function(td, row) {
+            //     const ratio = this.getRowValue(row);
+            //     const string = (ratio === -1) ? '∞' : window.qBittorrent.Misc.toFixedPointString(ratio, 2);
+            //     td.set('text', string);
+            //     td.set('title', string);
+            // };
         },
 
         applyFilter: function(row, filterName, categoryHash, tagHash, trackerHash, filterTerms) {

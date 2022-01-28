@@ -167,6 +167,7 @@ namespace BitTorrent
         int totalSeedsCount() const override;
         int totalPeersCount() const override;
         int totalLeechersCount() const override;
+        qreal seedsLeechsRatio() const override;
         int completeCount() const override;
         int incompleteCount() const override;
         QDateTime lastSeenComplete() const override;

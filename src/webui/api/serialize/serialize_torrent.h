@@ -86,5 +86,6 @@ inline const char KEY_TORRENT_AUTO_TORRENT_MANAGEMENT[] = "auto_tmm";
 inline const char KEY_TORRENT_TIME_ACTIVE[] = "time_active";
 inline const char KEY_TORRENT_SEEDING_TIME[] = "seeding_time";
 inline const char KEY_TORRENT_AVAILABILITY[] = "availability";
+inline const char KEY_TORRENT_SEEDS_PEERS_RATIO[] = "seeds_peers_ratio";
 
 QVariantMap serialize(const BitTorrent::Torrent &torrent);

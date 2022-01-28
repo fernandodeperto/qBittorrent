@@ -91,6 +91,7 @@ const char KEY_PROP_SEEDS[] = "seeds";
 const char KEY_PROP_SEEDS_TOTAL[] = "seeds_total";
 const char KEY_PROP_PEERS[] = "peers";
 const char KEY_PROP_PEERS_TOTAL[] = "peers_total";
+const char KEY_PROP_SEEDS_PEERS_RATIO[] = "seeds_peers_ratio";
 const char KEY_PROP_RATIO[] = "share_ratio";
 const char KEY_PROP_REANNOUNCE[] = "reannounce";
 const char KEY_PROP_TOTAL_SIZE[] = "total_size";
@@ -361,6 +362,7 @@ void TorrentsController::infoAction()
 //   - "seeds_total": Torrent total number of seeds
 //   - "peers": Torrent connected peers
 //   - "peers_total": Torrent total number of peers
+//   - "seeds_peers_ratio": Torrent seeds/peers ratio
 //   - "share_ratio": Torrent share ratio
 //   - "reannounce": Torrent next reannounce time
 //   - "total_size": Torrent total size
@@ -410,6 +412,7 @@ void TorrentsController::propertiesAction()
     dataDict[KEY_PROP_SEEDS_TOTAL] = torrent->totalSeedsCount();
     dataDict[KEY_PROP_PEERS] = torrent->leechsCount();
     dataDict[KEY_PROP_PEERS_TOTAL] = torrent->totalLeechersCount();
+    dataDict[KEY_PROP_SEEDS_PEERS_RATIO] = torrent->seedsLeechsRatio();
     const qreal ratio = torrent->realRatio();
     dataDict[KEY_PROP_RATIO] = ratio > BitTorrent::Torrent::MAX_RATIO ? -1 : ratio;
     dataDict[KEY_PROP_REANNOUNCE] = torrent->nextAnnounce();
